@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Guia Interativo de Procedimentos - Estágio Pós-Doutoral</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+:root{
+  --azul:#1e3a6e;
+  --azul-inst:#003893;
+  --vermelho:#C8191E;
+  --amarelo:#f0c040;
+  --verde:#2e8b57;
+  --tinta:#2b3a52;
+  --tinta-suave:#3d4f6e;
+  --paper:#f4f6fb;
+  --realce:#eef1f8;
+  --linha:#d7deea;
+  --sombra:0 10px 28px rgba(30,58,110,.10);
+  --raio:18px;
+  --ufsc-blue:#003893; /* azul institucional: usar em conteúdo oficial UFSC */
+  --ufsc-red:#C8191E;
+
+  /* Neutros */
+  --ink:#2b3a52;
+  --muted:#3d4f6e;
+  --card:#ffffff;
+  --paper:#f4f6fb;
+  --highlight:#eef1f8;
+  --line:#d7deea;
+  --shadow:0 10px 28px rgba(30,58,110,.10);
+  --radius:18px;
+
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--tinta);font-family:Inter,Arial,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.skip-link{position:absolute;left:-9999px;top:.5rem;z-index:999;background:#fff;color:var(--azul);border:2px solid var(--azul);padding:.7rem 1rem;border-radius:8px;font-weight:800;text-decoration:none}
+.skip-link:focus{left:.75rem}
+:focus-visible{outline:3px solid var(--azul-inst);outline-offset:3px}
+
+.top{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.97);border-bottom:4px solid var(--vermelho);backdrop-filter:blur(10px)}
+.top-inner{max-width:1120px;margin:auto;padding:12px 18px;display:flex;align-items:center;gap:14px;justify-content:space-between}
+.brand{font-weight:800;color:var(--azul);font-size:1rem;white-space:nowrap}
+.brand small{display:block;font-weight:600;color:var(--tinta-suave);font-size:.78rem;letter-spacing:.5px;text-transform:uppercase}
+.nav{display:flex;gap:7px;overflow:auto;scrollbar-width:thin;padding:2px}
+.nav a{text-decoration:none;border:1px solid var(--linha);padding:7px 11px;border-radius:999px;font-size:.85rem;font-weight:700;color:var(--tinta-suave);white-space:nowrap;background:#fff}
+.nav a.active,.nav a:hover{background:var(--azul);color:#fff;border-color:var(--azul)}
+
+.hero{position:relative;overflow:hidden;background:linear-gradient(135deg,var(--azul),var(--azul-inst) 68%,var(--azul));color:#fff;padding:56px 20px 62px}
+.hero::after{content:"";position:absolute;right:-90px;top:-130px;width:340px;height:340px;border-radius:50%;border:42px solid rgba(255,255,255,.05)}
+.wrap{max-width:1080px;margin:auto;position:relative;z-index:1}
+.pill{display:inline-block;background:var(--amarelo);color:var(--azul);font-weight:800;border-radius:999px;padding:7px 12px;font-size:.85rem}
+.eyebrow{text-transform:uppercase;letter-spacing:1.5px;font-size:.85rem;font-weight:800;color:var(--vermelho)}
+.hero .eyebrow{color:#eef1f8;margin-top:18px}
+h1{font-size:clamp(2rem,5.5vw,3rem);line-height:1.08;margin:10px 0 14px;letter-spacing:-.02em}
+.hero p{color:#eef1f8;font-size:1.05rem}
+
+main{padding:48px 18px 70px}
+section{max-width:1080px;margin:0 auto 64px;scroll-margin-top:96px}
+h2{font-size:clamp(1.6rem,3.4vw,2.2rem);line-height:1.15;color:var(--azul);margin:8px 0 14px;padding-left:14px;border-left:5px solid var(--vermelho)}
+.lead{color:var(--tinta-suave);font-size:1.02rem}
+.story{background:var(--highlight);border-left:6px solid var(--ufsc-blue);border-radius:var(--radius);padding:22px 24px;margin:24px 0}
+.stamp{display:inline-flex;align-items:center;justify-content:center;width:54px;height:54px;border:2px solid var(--ufsc-blue);border-radius:50%;font-weight:800;color:var(--ufsc-blue);background:#fff;margin-bottom:10px;box-shadow:0 4px 12px rgba(31,52,105,.08)}
+.largecards{display:grid;grid-template-columns:repeat(1,1fr)margin-top:24px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px}
+.card{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--ufsc-blue);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)}
+.card .num{font-size:1rem;font-weight:800;color:var(--ufsc-red);text-transform:uppercase;letter-spacing:1px}
+.card:nth-child(2){border-left-color:var(--amarelo)}
+.card:nth-child(3){border-left-color:var(--verde)}
+.roles{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px}
+.role{border:1px solid var(--line);border-radius:var(--radius);background:#fff;overflow:hidden;box-shadow:0 6px 18px rgba(31,52,105,.07)}
+.role-toggle{appearance:none;width:100%;border:0;background:linear-gradient(180deg,#fff,var(--highlight));padding:20px;text-align:left;font:inherit;color:var(--ink);cursor:pointer;display:block}
+.role-toggle:hover{background:#eef1f8}
+.role-toggle .icon{font-size:1.8rem;display:block;margin-bottom:6px}
+.role-toggle .role-title{font-size:1.12rem;font-weight:800;color:var(--course-blue)}
+.role-toggle .hint{display:block;margin-top:8px;color:var(--muted);font-size:1rem;font-weight:700}
+.role .hidden{display:none;padding:0 20px 20px;color:var(--muted);background:#fff}
+.role.open .hidden{display:block}
+.data-box{background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);margin-top:24px}
+.data-head{padding:20px 22px;background:var(--highlight);border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:15px;align-items:center}
+.legend{display:flex;gap:7px;flex-wrap:wrap;font-size:1rem}
+.badge{display:inline-block;border-radius:999px;padding:5px 9px;font-size:1rem;font-weight:800;border:1px solid transparent}
+.badge-pessoal{background:#eef1f8;color:#003893;border-color:#d7deea}
+.badge-sensivel{background:#fff1f1;color:#C8191E;border-color:#f0c0c2}
+.badge-contexto{background:#f3eff8;color:#6b3fa0;border-color:#ddd0ec}
+.data-list button{display:grid;grid-template-columns:1fr auto auto;gap:12px;align-items:center;width:100%;text-align:left;border:0;border-bottom:1px solid var(--line);background:#fff;padding:16px 20px;font:inherit;color:var(--ink);cursor:pointer}
+.data-list button:hover,.data-list button:focus-visible{background:var(--highlight)}
+.data-list button:last-child{border-bottom:0}
+/* A classificação fica oculta até a interação, preservando o caráter exploratório da atividade. */
+.data-list button > .badge{display:none}
+.data-list button.open > .badge{display:inline-block}
+.data-list button.open > .tap{display:none}
+.fname{font-weight:700}.fval{color:var(--muted);font-size:1rem}
+.reveal{grid-column:1/-1;display:none;background:var(--highlight);border-top:1px dashed #d7deea;padding:13px 4px 2px;color:var(--muted);font-size:1rem}
+.data-list button.open .reveal{display:block}.tap{font-size:1rem;color:var(--muted);white-space:nowrap;font-weight:700}
+.case{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:23px;margin:16px 0;box-shadow:var(--shadow);border-left:5px solid var(--ufsc-blue)}
+.case-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.case-label{color:var(--ufsc-red);font-size:1rem;font-weight:800;text-transform:uppercase;letter-spacing:1px}
+.choice{width:100%;text-align:left;border:1px solid var(--line);background:#fff;border-radius:11px;padding:13px 15px;margin:7px 0;font:inherit;cursor:pointer;color:var(--ink)}
+.choice:hover{border-color:var(--course-blue)}.choice:disabled{cursor:default;opacity:1}.choice.correct{border-color:var(--green);background:#eef8f2}
+.choice.correct::before{content:"✓ ";font-weight:800}
+.choice.wrong{border-color:var(--ufsc-red);background:#fff1f1}
+.choice.wrong::before{content:"✕ ";font-weight:800}
+.feedback{display:none;border-radius:11px;padding:13px 15px;margin-top:10px;font-size:1rem}.feedback.show{display:block}.good{background:#eef8f2;color:#246d48}.bad{background:#fff1f1;color:#8f1116}
+.quote{font-size:1.18rem;font-weight:700;color:var(--course-blue);border-left:5px solid var(--yellow);padding:10px 0 10px 20px;margin:25px 0}
+.checklist{background:var(--highlight);border-radius:var(--radius);padding:18px 22px;border:1px solid var(--line)}
+.checklist label{display:flex;gap:12px;align-items:flex-start;padding:14px 4px;border-bottom:1px solid var(--line);cursor:pointer}.checklist label:last-child{border-bottom:0}.checklist input{margin-top:5px;accent-color:var(--course-blue);width:18px;height:18px}.checklist label.checked{color:var(--green);font-weight:700}
+.primary{background:var(--course-blue);color:#fff;border:0;border-radius:10px;padding:12px 17px;font:inherit;font-weight:800;cursor:pointer;margin-top:14px}.primary:hover{background:var(--course-blue)}
+textarea{width:100%;min-height:120px;border:1px solid var(--line);border-radius:12px;padding:14px;font:inherit;color:var(--ink);background:#fff}.field-label{display:block;font-weight:800;color:var(--course-blue);margin-bottom:8px}.result{margin-top:15px;font-weight:700;color:var(--course-blue)}
+.ref{font-size:1rem;color:var(--muted);padding:18px 0;border-top:1px solid var(--line)}
+footer{background:var(--course-blue);border-top:4px solid var(--ufsc-red);color:#eef1f8;padding:35px 18px}footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.ai-notice{margin:12px 0 0;max-width:760px;font-size:1rem;line-height:1.5;color:#eef1f8}
+.small{font-size:1rem;color:var(--muted)}
+@media(max-width:780px){.cards,.roles{grid-template-columns:1fr}.top-inner{align-items:flex-start;flex-direction:column}.nav{width:100%}.data-list button{grid-template-columns:1fr auto}.fval{grid-column:1/2}.tap{grid-column:2/3;grid-row:1}.reveal{grid-column:1/-1}.lesson{padding:48px 18px}.data-head{align-items:flex-start;flex-direction:column}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+@media print{.top,.skip-link{display:none}.lesson{padding:35px 18px}.case,.card,.data-box,.role{box-shadow:none;break-inside:avoid}body{background:#fff}}
+
+
+/* Trilha de etapas (stepper geral) */
+.stepper{display:flex;flex-wrap:wrap;gap:10px;margin:24px 0}
+.stepper .step{flex:1;min-width:150px;background:#fff;border:1px solid var(--linha);border-radius:12px;padding:12px 14px;display:flex;gap:10px;align-items:center;box-shadow:0 4px 12px rgba(31,52,105,.06)}
+.stepper .dot{width:26px;height:26px;border-radius:50%;background:var(--realce);color:var(--tinta-suave);display:grid;place-items:center;font-weight:800;font-size:.85rem;flex:0 0 26px}
+.stepper .step.completo .dot{background:var(--verde);color:#fff}
+.stepper .step small{display:block;color:var(--tinta-suave);font-size:.78rem}
+.stepper .step strong{font-size:.9rem;color:var(--tinta)}
+
+/* Cartão de etapa com checklist de documentos */
+.etapa{background:#fff;border:1px solid var(--linha);border-left:5px solid var(--azul-inst);border-radius:var(--raio);box-shadow:var(--sombra);margin-bottom:18px;overflow:hidden}
+.etapa-toggle{appearance:none;width:100%;border:0;background:linear-gradient(180deg,#fff,var(--realce));padding:20px 22px;text-align:left;font:inherit;color:var(--tinta);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.etapa-toggle:hover{background:#eef1f8}
+.etapa-titulo{font-size:1.08rem;font-weight:800;color:var(--azul)}
+.etapa-sub{display:block;margin-top:4px;color:var(--tinta-suave);font-size:.85rem;font-weight:600}
+.etapa-badge{flex:0 0 auto;font-size:.78rem;font-weight:800;padding:5px 10px;border-radius:999px;background:var(--realce);color:var(--tinta-suave);white-space:nowrap}
+.etapa-badge.completo{background:var(--verde);color:#fff}
+.etapa-corpo{display:none;padding:0 22px 22px}
+.etapa.open .etapa-corpo{display:block}
+.doc-lista label{display:flex;gap:12px;align-items:flex-start;padding:12px 4px;border-bottom:1px solid var(--linha);cursor:pointer}
+.doc-lista label:last-child{border-bottom:0}
+.doc-lista input{margin-top:4px;accent-color:var(--azul);width:18px;height:18px;flex:0 0 18px}
+.doc-nome{font-weight:700}
+.doc-desc{display:block;color:var(--tinta-suave);font-size:.88rem;margin-top:2px}
+.doc-lista label.marcado .doc-nome{color:var(--verde)}
+.badge-obrig{display:inline-block;margin-left:8px;font-size:.72rem;font-weight:800;color:var(--vermelho);text-transform:uppercase}
+
+/* Formulário de envio */
+.form-box{background:#fff;border:1px solid var(--linha);border-radius:var(--raio);box-shadow:var(--sombra);padding:26px}
+.campo{margin-bottom:16px}
+.campo label{display:block;font-weight:800;color:var(--azul);margin-bottom:6px;font-size:.92rem}
+.campo input[type=text],.campo input[type=email],.campo select,.campo textarea{
+  width:100%;border:1px solid var(--linha);border-radius:10px;padding:11px 13px;font:inherit;color:var(--tinta);background:#fff}
+.campo textarea{min-height:90px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.resumo-envio{background:var(--realce);border:1px solid var(--linha);border-radius:12px;padding:14px 16px;margin:16px 0;font-size:.9rem;color:var(--tinta-suave)}
+.resumo-envio strong{color:var(--tinta)}
+.primario{background:var(--azul);color:#fff;border:0;border-radius:10px;padding:13px 20px;font:inherit;font-weight:800;cursor:pointer}
+.primario:hover{background:var(--azul-inst)}
+.primario:disabled{background:#aeb8c8;cursor:not-allowed}
+.feedback{display:none;border-radius:11px;padding:13px 15px;margin-top:14px;font-size:.92rem}
+.feedback.show{display:block}
+.feedback.good{background:#eef8f2;color:#246d48}
+.feedback.bad{background:#fff1f1;color:#8f1116}
+.aviso-privacidade{font-size:.82rem;color:var(--tinta-suave);margin-top:14px}
+
+footer{background:var(--azul);border-top:4px solid var(--vermelho);color:#eef1f8;padding:32px 18px}
+footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.small{font-size:.85rem;color:#d9e2f3}
+
+@media(max-width:780px){
+  .top-inner{align-items:flex-start;flex-direction:column}
+  .nav{width:100%}
+  .grid2{grid-template-columns:1fr}
+  .etapa-toggle{flex-direction:column;align-items:flex-start}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="top">
+  <div class="top-inner">
+    <div class="brand"><small>Universidade Federal de Santa Catarina</small>Programa de Pós-Graduação em Direito</div>
+    <nav class="nav" id="menuNav">
+      <a data-nav href="#antes">Aderência</a>
+      <a data-nav href="#plano">Plano de Trabalho</a>
+      <a data-nav href="#etapas">Etapas</a>
+      <a data-nav href="#envio">Enviar dados</a>
+      <a data-nav href="#duvidas">Dúvidas</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="wrap">
+    <span class="pill">Guia Interativo de Procedimentos</span>
+    <h1>Estágio Pós-Doutoral no PPGD/UFSC</h1>
+    <p>Este Guia foi elaborado para facilitar a organização dos documentos necessários em todas as etapas do Estágio Pós-Doutoral no PPGD/UFSC.</p>
+  </div>
+</div>
+
+<main id="conteudo">
+  <section id="antes">
+	<div class="eyebrow">01 • Preparando a Inscrição</div>
+	<h2>Estrutura Pedagógica do PPGD/UFSC</h2>
+	<p class="lead">A atual estrutura pedagógica do PPGD/UFSC está organizada em uma Área de Concentração, subdividida em quatro linhas de pesquisa. Cada linha comporta três projetos coletivos, que reúnem as pesquisas individuais dos docentes.</p>
+	<div class="largecards">
+	  <article class="card"><div class="num">Área de Concentração</div><h3>Direito Política e Sociedade</h3><p>Área que engloba todas as pesquisas desenvolvidas no PPGD/UFSC</p></article>
+	</div>
+	<br />
+	<div class="largecards">
+	  <article class="card"><div class="num">Linhas de Pesquisa</div>
+	    <p class="lead">Clique ou pressione <span class="eyebrow">Enter</span> para ver a Ementa, os Projetos Coletivos associados, e os docentes integrantes de cada Projeto.</p>
+	    <article class="role">
+			<button aria-controls="linha-1" aria-expanded="false" class="role-toggle" onclick="toggleRole(this)" type="button">
+			  <span aria-hidden="true" class="role-title">1. Ordem Internacional, Justiça e Sustentabilidade</span>
+			</button>
+			  <div class="hidden" id="linha-1">
+			    <p>Esta linha analisa as dinâmicas globais que moldam as relações jurídicas na sociedade internacional contemporânea, com ênfase nas desigualdades sociais, raciais e de gênero, nos desafios do meio ambiente, do desenvolvimento sustentável, da governança global e da cooperação internacional, sob a perspectiva da proteção dos direitos humanos e socioambientais. Investiga como regimes internacionais e atores estatais, supranacionais e não estatais – como organizações internacionais, ONGs, corporações e indivíduos - cooperam ou entram em conflito na busca por soluções para crises socioambientais, para as desigualdades, para a implementação de agendas como os Objetivos de Desenvolvimento Sustentável das Nações Unidas e na resposta a violações de direitos humanos. Amparada por enfoques do Direito Internacional Público e Privado, do Direito da Integração, do Direito Ambiental, das Relações Internacionais, da Propriedade Intelectual e dos Estudos de Governança Global, a linha examina temas como cooperação internacional e regional, comércio e inovação sustentável, segurança energética, diplomacia e mudanças climáticas, direito penal internacional, tributos verdes, conflitos socioambientais e os impactos da globalização sobre a natureza e sobre as sociedades. Seu objetivo é produzir conhecimento crítico que contribua para a construção de uma ordem Internacional mais equitativa, sustentável e responsável, oferecendo subsídios a formuladores de políticas públicas, organizações multilaterais, movimentos socioambientais e defensores de direitos humanos.</p>
+				<div class="data-list">
+				  <button aria-expanded="false" onclick="toggleData(this)" type="button">
+					<span class="fname">Projeto Coletivo 1.1: Direitos Humanos, Desigualdades e Globalização</span><span class="badge badge-pessoal">Ementa</span><span class="tap">Ver Ementa</span>
+					<span class="reveal"><p>O projeto tem como foco analisar as interseções entre direitos humanos, desigualdades e globalização no contexto das transformações sociais, econômicas e ambientais que caracterizam a ordem internacional contemporânea. A partir de uma abordagem crítica e interdisciplinar, investiga como os regimes jurídicos internacionais, especialmente no âmbito do Direito Internacional dos Direitos Humanos, das Relações Internacionais e da Governança Global, têm respondido aos desafios estruturais que perpetuam as assimetrias entre países e populações, considerando também a ambiguidade do Direito como produtora de desigualdades e, ao mesmo tempo, como linguagem de luta. O projeto examina o papel das instituições multilaterais, organizações não estatais e movimentos sociais na formulação de políticas que atentem aos impactos da globalização, das desigualdades sócio-gendradas-raciais globais, da geopolítica atual, dos desafios ambientais e das crises humanitárias sobre as populações vulneráveis. O objetivo é produzir conhecimento que contribua para o fortalecimento de marcos jurídicos e políticas públicas voltadas à promoção e ao respeito aos direitos fundamentais e humanos em escala global.</p>
+						<div class="eyebrow">Docentes</div>
+						
+					</span>
+				  </button>
+				</div>
+				<div class="data-list">
+				  <button aria-expanded="false" onclick="toggleData(this)" type="button">
+					<span class="fname">Projeto Coletivo 1.2: Sustentabilidade Ecológico-Social, Conflitos Socioambientais e Mudanças Climáticas</span><span class="badge badge-pessoal">Ementa</span><span class="tap">Ver Ementa</span>
+					<span class="reveal">O projeto de pesquisa tem por objetivo o estudo da interrelação entre Direito, natureza e sociedades e é amparado pelos marcos da sustentabilidade ecológicosocial, dos conflitos socioambientais e das mudanças climáticas que se colocam como desafios às sociedades humanas. As pesquisas desenvolvidas no âmbito do projeto são pensadas a partir de uma abordagem crítica e interdisciplinar, com bases teóricas do Direito Ambiental, do Direito Ecológico e do Direito Socioambiental, evidenciando os diversos conflitos socioambientais que se observam no marco da modernidade capitalista. Entre os temas abordados é possível citar o estudo crítico das normas ambientais internacionais e nacionais e da noção de sustentabilidade, as relações entre Direito, Economia e meio ambiente, direitos dos povos indígenas e comunidades tradicionais, diálogos de saberes, pensamento decolonial, conflitos socioambientais, justiça ambiental, racismo ambiental, racionalidade ambiental, complexidade ambiental, litigância ecológica, litigância climática, direitos da natureza, segurança energética, além de temas como tributação ambiental, saúde e meio ambiente do trabalho. O objetivo do projeto é colaborar na construção científica para o fortalecimento teórico dos temas abordados, fomentando o potencial de impacto das produções vinculadas para formulação de políticas públicas de caráter ambiental, ecológico ou socioambiental.</span>
+				  </button>
+				</div>
+				<div class="data-list">
+				  <button aria-expanded="false" onclick="toggleData(this)" type="button">
+					<span class="fname">Projeto Coletivo 1.3: Cooperação Internacional e Regional</span><span class="badge badge-pessoal">Ementa</span><span class="tap">Ver Ementa</span>
+					<span class="reveal">O projeto tem como objetivo central investigar os mecanismos de cooperação jurídica internacional e regional que moldam as relações jurídicas no cenário global contemporâneo. A partir de uma abordagem interdisciplinar que articula o Direito Internacional Público e Privado, o Direito da Integração, o Direito Penal Internacional, o Comércio Internacional e a Propriedade Intelectual, busca-se compreender de que forma os diversos marcos normativos multilaterais e regionais contribuem para o fortalecimento da cooperação jurídica entre Estados e outros atores não estatais, como organizações internacionais, ONGs, corporações e indivíduos, a promoção das relações comerciais mais justas e sustentáveis e a proteção efetiva dos direitos humanos em âmbito transnacional. O projeto analisa criticamente a crescente complexidade das relações jurídicas públicas e privadas internacionais, bem como os desafios relacionados à harmonização normativa entre diferentes sistemas jurídicos e à governança multilateral em um contexto global marcado por desigualdades e conflitos. Examina-se, ainda, o papel dos acordos internacionais na harmonização normativa e na promoção da inovação sustentável e da cultura criativa, alinhando novas tecnologias às exigências de governança global. Buscase, assim, produzir conhecimento que subsidie políticas públicas e instituições jurídicas nacionais e internacionais, promovendo uma ordem internacional mais equitativa, democrática e solidária.</span>
+				  </button>
+				</div>				
+			  </div>
+		</article>
+		<article class="role">
+			<button aria-controls="linha-2" aria-expanded="false" class="role-toggle" onclick="toggleRole(this)" type="button">
+			  <span aria-hidden="true" class="role-title">2. Constitucionalismo, Democracia e Organização do Estado</span>
+			</button>
+			  <div class="hidden" id="linha-2">
+			    <p>Esta é linha de pesquisa interdisciplinar dedicada a compreender como as constituições estruturam, limitam e legitimam o exercício do Poder Político, assegurando direitos fundamentais e estimulando a participação cidadã. Examina a arquitetura e os mecanismos de controle do Poder Estatal, a qualidade dos processos democráticos e os dispositivos de tutela de direitos, ao mesmo tempo em que investiga os desafios contemporâneos, sociais, tecnológicos, econômicos e ambientais, que tencionam o Estado de Direito, considerando ainda as interações entre ordens jurídicas em diferentes níveis. Ao articular Teoria Constitucional, Ciência Política, Administração Pública, Tributação, Direito Econômico e Análise Econômica do Direito, Direito Comparado e governança multinível, busca produzir conhecimento crítico voltado ao fortalecimento de democracias mais justas, estáveis e inclusivas, oferecendo subsídios a formuladores de políticas públicas, instituições de controle e sociedade civil na consolidação do Estado Democrático de Direito.</p>
+				<div class="data-list">
+				  <button aria-expanded="false" onclick="toggleData(this)" type="button">
+					<span class="fname">Projeto Coletivo 2.1: Constitucionalismo Contemporâneo, Direitos Fundamentais e Conflitos Institucionais</span><span class="badge badge-pessoal">Ementa</span><span class="tap">Ver Ementa</span>
+					<span class="reveal">O projeto tem como objeto as diversas vertentes do Constitucionalismo pós-guerra. Neoconstitucionalismo: Vantagens e desvantagens da sua adoção - Constitucionalismo Garantista: o projeto do positivismo crítico - Constitucionalismos emergentes: Novo constitucionalismo Latino-americano, Constitucionalismo popular e Constitucionalismo crítico - Constitucionalismo político e críticas contemporâneas ao Neoconstitucionalismo - Constitucionalismo institucionalista - Direitos fundamentais: suas múltiplas possibilidades hermenêuticas - Novos direitos: Direitos da natureza, dos animais e outros - Constitucionalismo x Democracia: Tensões e conflitos entre soberania popular, maiorias e proteção dos mais fracos - Liberdade de expressão.</span>
+				  </button>
+				</div>
+				<div class="data-list">
+				  <button aria-expanded="false" onclick="toggleData(this)" type="button">
+					<span class="fname">Projeto Coletivo 2.2: Democracia Digital, Governança Pública, Inteligência Artificial e Inovação</span><span class="badge badge-pessoal">Ementa</span><span class="tap">Ver Ementa</span>
+					<span class="reveal">O projeto tem como objeto as diversas dimensões da democracia, com ênfase a noção de democracia digital, seus desafios e limites, em especial nos aspectos da cidadania e dos direitos sociais - Governança pública e as dimensões do Governo Eletrônico e Governo Digital e seus desdobramentos: soberania digital, transformação digital, desigualdade digital - Processo administrativo, controle estatal e direito sancionatório na contemporaneidade - A inteligência artificial e seus impactos no âmbito do setor público e entidades privadas - Sustentabilidade, cidades inteligentes e direito urbanístico na contemporaneidade -Inovação nos setores público e privado e seus desdobramentos na atualidade.</span>
+				  </button>
+				</div>
+				<div class="data-list">
+				  <button aria-expanded="false" onclick="toggleData(this)" type="button">
+					<span class="fname">Projeto Coletivo 2.3: Federalismo, Tributação, Direito Econômico e Cooperação Internacional</span><span class="badge badge-pessoal">Ementa</span><span class="tap">Ver Ementa</span>
+					<span class="reveal">O projeto tem como objeto de estudo a juridificação de políticas públicas tanto tributárias, quanto econômicas. São estudados temas como: Federalismo, Reforma Tributária e Federalismo; Impactos Econômicos da Reforma Tributária; Matriz Tributária Brasileira; Equidade e Eficiência na Matriz Tributária Brasileira. Cooperação Interinstitucional; Comitê Gestor do IBS; Direito Econômico; Ordem Constitucional Econômica Brasileira; Sistema Brasileiro de Defesa da Concorrência; Sistema Nacional de Defesa do Consumidor, Propriedade Intelectual; Direito Internacional Econômico; A Civil Law Brasileira e a Análise Econômica do Direito (Law and Economics). Teoria Microeconômica aplicada ao Direito sob o viés dos Princípios da Eficiência Econômico Social (PEES) e da Autodestruição Renovadora Eficiente-Econômico-Social (ADREECOS).</span>
+				  </button>
+				</div>		
+			  </div>
+		</article>
+		<article class="role">
+			<button aria-controls="linha-3" aria-expanded="false" class="role-toggle" onclick="toggleRole(this)" type="button">
+			  <span aria-hidden="true" class="role-title">3. Historicismo, Conhecimento Crítico e Controle Social</span>
+			</button>
+			  <div class="hidden" id="linha-3">
+			    <p>A linha aborda o direito a partir de uma perspectiva crítica interdisciplinar que enfatiza a interface do saber – visto como os procedimentos e os efeitos de conhecimento de um campo de estudo ou especialização em um dado momento histórico – com poder – apreendido como o conjunto de mecanismos que induzem comportamentos, discursos e formas de vida. Visa compreender não somente as narrativas históricas e as estruturas de poder que moldam o direito, direcionam as práticas jurídicas e legitimam os mecanismos de dominação, como também os espaços de resistência a partir delas produzidos que permitem pensar novas teorias e usos para o direito. Integrando o pensamento crítico e o método interdisciplinar, a linha abriga pesquisas teóricas e empíricas comprometidas com as formas emancipadoras do conhecimento jurídico e com a justiça social.</p>
+				<div class="data-list">
+				  <button aria-expanded="false" onclick="toggleData(this)" type="button">
+					<span class="fname">Projeto Coletivo 3.1: Diálogos Contemporâneos com a Filosofia, a Sociologia e a Economia: Relações Raciais, Gênero, Sexualidades, Decolonialidade e Direito</span><span class="badge badge-pessoal">Ementa</span><span class="tap">Ver Ementa</span>
+					<span class="reveal">As estruturas sociais contemporâneas são profundamente marcadas por interseccionalidades entre raça, gênero, sexualidade e colonialidade, que perpetuam desigualdades e violências sistêmicas. Apesar dos avanços normativos em direitos humanos, persistem desafios como o racismo estrutural, a violência de gênero, a marginalização de identidades LGBTQIA+ e a herança colonial nas instituições jurídicas e econômicas. Este projeto parte do pressuposto de que o Direito, enquanto campo normativo e performativo, não pode ser dissociado de debates filosóficos sobre justiça, de análises sociológicas sobre poder e de críticas econômicas à reprodução de assimetrias globais. A decolonialidade emerge como lente teórica indispensável para desvelar epistemologias dominantes e propor alternativas que reconheçam saberes subalternizados e ampliem diálogos com saberes marginalizados, como os de comunidades indígenas, afrodiaspóricas e LGBTQIA+, cujas experiências desafiam paradigmas ocidentais de justiça e organização social. Os objetivos centrais da pesquisa incluem analisar criticamente as interfaces entre Direito e teorias filosóficas decoloniais, investigar a reprodução de desigualdades em sistemas econômicos globais e propor estratégias para a transformação de práticas jurídicas e políticas. Para tanto, serão explorados temas como a crítica às normas que perpetuam lógicas coloniais, a economia política do racismo e do sexismo e seus respectivos contratos raciais e sexuais e as resistências jurídicas de identidades dissidentes.</span>
+				  </button>
+				</div>
+				<div class="data-list">
+				  <button aria-expanded="false" onclick="toggleData(this)" type="button">
+					<span class="fname">Projeto Coletivo 3.2: Direitos Humanos, Antropologia e História da Cultura Jurídica</span><span class="badge badge-pessoal">Ementa</span><span class="tap">Ver Ementa</span>
+					<span class="reveal">Este grupo interdisciplinar investiga as relações entre direito, sociedade e cultura, articulando saberes da antropologia, história e filosofia para analisar sistemas jurídicos em suas dimensões históricas, simbólicas e políticas. Com enfoque crítico e decolonial, explora temas como direitos humanos, pluralismo legal e religioso e as transformações da cultura jurídica, questionando narrativas hegemônicas. Seu objetivo é compreender como o direito reflete e reproduz estruturas de poder, identidades e conflitos sociais, ao mesmo tempo que busca alternativas para uma justiça mais inclusiva. Destacam-se os estudos sobre Direito e Religião, que analisam tensões entre normas estatais e tradições religiosas (ex.: secularismo, liberdade religiosa e direitos reprodutivos), e a Historiografia Jurídica, que revisita fontes clássicas e contemporâneas para desconstruir visões eurocêntricas do direito, incluindo análises de códigos antigos, legislação colonial e diálogos com sistemas jurídicos não ocidentais. A abordagem histórica é complementada por perspectivas críticas que revelam silenciamentos e colonialidades na formação do direito moderno. Investiga-se o pluralismo legal em comunidades tradicionais (indígenas, quilombolas) e a performatividade do direito em rituais e narrativas sociais. Paralelamente, examina-se a efetividade dos direitos humanos em contextos de exclusão, com ênfase em interseccionalidade (raça, gênero, classe) e mecanismos de reparação para violações sistêmicas. Esses eixos conectam-se à crítica de hierarquias epistemológicas que subalternizam saberes não ocidentais, propondo uma releitura antropológica da justiça. Utilizando métodos qualitativos (etnografia, história oral, análise documental), o grupo prioriza abordagens comparativas e transnacionais, integrando teorias pós-estruturais, feministas e dos estudos subalternos. Busca fomentar diálogos entre disciplinas, desnaturalizar a colonialidade do direito e articular pesquisa acadêmica com demandas sociais, como a defesa de políticas públicas antirracistas e a descolonização de currículos jurídicos. Além de produção acadêmica (publicações, congressos), o grupo colabora com movimentos sociais, instituições de justiça e comunidades, visando influenciar práticas educacionais e ações reparatórias. Sua atuação reforça o papel da universidade como agente de transformação, promovendo a justiça como horizonte ético e resgatando memórias jurídicas silenciadas. É um espaço de resistência intelectual, onde o direito é interrogado como campo de lutas, potencializando futuros mais equitativos.</span>
+				  </button>
+				</div>
+				<div class="data-list">
+				  <button aria-expanded="false" onclick="toggleData(this)" type="button">
+					<span class="fname">Projeto Coletivo 3.3: Criminologia Crítica, Políticas Criminais e Sistema Jurídico-Penal</span><span class="badge badge-pessoal">Ementa</span><span class="tap">Ver Ementa</span>
+					<span class="reveal">Este projeto investiga as intersecções entre política criminal, sistema jurídico-penal e estruturas de poder no contexto atual, adotando uma perspectiva crítica nos seguintes sentidos: a) pelas lentes das criminologias críticas, decoloniais e feministas, examina como o controle social contemporâneo opera seletivamente, criminalizando populações vulnerabilizadas enquanto flexibiliza o tratamento aos crimes dos poderosos; b) analisa como o neoliberalismo econômico se articula com o neoconservadorismo moral para moldar políticas criminais que simultaneamente intensificam o controle punitivo sobre grupos marginalizados e restringem direitos sexuais e reprodutivos e c) analisa a atuação do poder público que, por meio do Legislativo, produz leis penais de forma irracional e sem avaliação de seus impactos e, por meio do Judiciário, emprega critérios dogmáticos punitivos, adotando a expansão do direito penal e a flexibilização das garantias processuais como formas prioritárias de solução de conflitos gerados em matéria criminal, em especial nos bens jurídicos coletivos (como a economia e o meio ambiente) e na justiça penal negociada. Serão realizados estudos teóricos e empíricos, com ênfase em pesquisas comparadas. Metodologicamente, serão examinados: processos legislativos penais e seus impactos diferenciados; o direito penal e processual penal desde uma abordagem integrada, com ênfase na relativização de garantias; a efetividade dos mecanismos de enfrentamento à criminalidade econômico-ambiental; e alternativas transformativas à lógica punitivista, considerando as contribuições da criminologia crítica, verde e feminista para repensar a justiça em contextos de desigualdades estruturais e crise climática. O projeto visa, ainda, contribuir para o desenvolvimento de políticas criminais e de sistemas dogmáticos mais democráticos e sensíveis às dinâmicas de poder.</span>
+				  </button>
+				</div>				
+			  </div>			  
+		  </article>	    
+		  <article class="role">
+			<button aria-controls="linha-4" aria-expanded="false" class="role-toggle" onclick="toggleRole(this)" type="button">
+			  <span aria-hidden="true" class="role-title">4. Sistemas de Garantia, Relações Jurídicas Privadas e Processualidades</span>
+			</button>
+			  <div class="hidden" id="linha-4">
+			    <p>A linha estuda como o ordenamento jurídico disciplina as relações jurídicas em geral, especialmente as privadas, envolvendo os sistemas e atores de justiça, assim como as processualidades e normatividades. Partindo de um enfoque multidisciplinar que integra teoria e prática, a linha abrange temas de gestão e prevenção aos conflitos, gestão do Poder Judiciário, teoria do processo, processo constitucional, processo civil, processo e conformidade, direito civil, empresarial, do trabalho, de sucessões, família e infância e adolescência, observando especialmente os desafios contemporâneos decorrentes de transformações sociais, tecnológicas e econômicas. Busca compreender as demandas atuais do sistema de garantias, como proteção de direitos fundamentais, vulnerabilidades, efetividade e tempestividade. Dessa forma, contribui para o aprimoramento do debate acadêmico e profissional sobre relações jurídicas, acesso à justiça, a eficiência dos processos, a análise econômica do direito, bem como a incorporação de inovações nestas searas do conhecimento.</p>
+				<div class="data-list">
+				  <button aria-expanded="false" onclick="toggleData(this)" type="button">
+					<span class="fname">Projeto Coletivo 4.1: Relações Jurídicas Privadas, Tutela de Bens e Interesses e Organização do Mercado</span><span class="badge badge-pessoal">Ementa</span><span class="tap">Ver Ementa</span>
+					<span class="reveal">O objetivo do projeto é estudar o funcionamento e aplicação das regras de Direito Privado existentes, suas influências sobre o comportamento humano e geração de riqueza e propor possíveis melhoras. Este projeto tem por objeto o estudo do desenvolvimento da empresa no mercado, tendo como foco o exame das interações e estratégias estatais e empresariais e as garantias e liberdades dos sujeitos de direito. O projeto visa desenvolver estudos de instituições do Estado e suas interfaces com o Direito Privado, a atuação empresarial, novas tecnologias, mobilização de crédito e financiamento, bem como de mecanismos de controle e regulação da organização empresarial e social. O projeto visa analisar, de maneira sistêmica, como a tecnologia vem influenciando o Direito e a inovação, compreendendo pesquisas que tenham por objeto o estudo das várias questões envolvendo Direito e tecnologia, a fim de compreender seus aspectos jurídicos, econômicos e sociais. Envolve igualmente uma abordagem dogmática crítica em relação ao direito dos contratos, dos negócios imobiliários, da responsabilidade civil, do enriquecimento sem causa, incluindo a análise das condições para a responsabilidade civil (“lato sensu”) e seus efeitos sobre comportamento humano e empresarial. Busca-se, também, o desenvolvimento de ferramentas teóricas adequadas para o estudo destas questões, incluindo o Direito do Consumidor. Outra área do projeto é o estudo jurídico das relações de trabalho, inclusive em suas formas modernas, focando tanto na legalidade quanto nos aspectos econômicos das diversas formas de trabalho. Busca-se, também, o desenvolvimento de ferramentas teóricas adequadas para o estudo destas questões.</span>
+				  </button>
+				</div>
+				<div class="data-list">
+				  <button aria-expanded="false" onclick="toggleData(this)" type="button">
+					<span class="fname">Projeto Coletivo 4.2: Direitos Fundamentais e Proteção de Grupos Vulneráveis</span><span class="badge badge-pessoal">Ementa</span><span class="tap">Ver Ementa</span>
+					<span class="reveal">O projeto reúne investigações em três eixos centrais: “Direitos Fundamentais”, “Proteção de Grupos Vulnerabilizados” e “Cidadania”. A partir deles, desenvolvem-se pesquisas interdisciplinares, teóricas e empíricas comprometidas com a densidade epistemológica dos institutos e instituições jurídicas que permeiam os temas dos direitos de crianças e adolescentes, mulheres, pessoas idosas, negras, indígenas e LGBTQIAPN+, bem como o das famílias e das sucessões. Com foco no impacto das práticas institucionais e categorias jurídicas sobre os sujeitos delas destinatários, são analisados criticamente seu surgimento, suas permanências e as suas transformações, além do efeito alcançado pelos mecanismos de proteção existentes, bem como os desafios e as estruturas de poder geradores de assimetrias que interferem na efetivação dos direitos fundamentais relacionados a tais fenômenos. Estudam-se com primazia: a Doutrina da Proteção Integral, com especial atenção para os sujeitos em desenvolvimento; a proteção de grupos vulnerabilizados; a efetivação do desígnio igualitário (fraternidade) da CRFB/1988; a construção do conceito de cidadania no Brasil e sua comparação contrastiva com outras sociedades de tradição jurídica ocidental; a consolidação dos direitos civis e, em consequência, dos direitos humanos e do Estado Democrático de Direito no Brasil; a efetivação das ODS n. 05 e 16 da ONU; as relações existenciais e patrimoniais do Direito de Família e Sucessório; os impactos decorrentes das mudanças tecnológicas nas áreas em destaque; e a dicotomia entre a autonomia e as vulnerabilidades presentes nas relações familiares.</span>
+				  </button>
+				</div>
+				<div class="data-list">
+				  <button aria-expanded="false" onclick="toggleData(this)" type="button">
+					<span class="fname">Projeto Coletivo 4.3: Das processualidades</span><span class="badge badge-pessoal">Ementa</span><span class="tap">Ver Ementa</span>
+					<span class="reveal">O objetivo geral do projeto é estudar a gestão e a prevenção a conflitos tanto por meio das técnicas tradicionais do direito processual quanto pelos meios alternativos de solução de conflitos, incluindo os temas inerentes à gestão do Poder Judiciário, ao combate ao abuso do processo, à teoria do processo, ao processo constitucional, ao processo civil, ao processo pensado na perspectiva da conformidade e ao processo pensado na perspectiva dos direitos fundamentais, efetuando, ainda, correlações entre os temas inerentes à gestão processual do risco legal e das políticas de conformidade nos âmbitos público e privado. São objetivos específicos do projeto, a realização de leituras e debates em reuniões entre membros; a publicação dos resultados dos estudos; a realização e a organização de eventos sobre os temas inerentes às processualidades; a identificação e o desenvolvimento de pontos de evolução no direito processual a partir das políticas e técnicas de conformidade.</span>
+				  </button>
+				</div>				
+			  </div>			  
+			</div>
+		  </article>	  
+		</article>	
+	</div>
+  </section>
+  <section id="plano">
+    <h2>Corpo Docente</h2>
+    <p class="lead">A tabela a seguir permite localizar os docentes do Programa por nome, linha de pesquisa ou projeto coletivo a que se vinculam.</p>
+	<div class="cards">
+	  <article class="card"><div class="num">Elemento Principal</div><h3>Projeto de Pesquisa</h3><p>Tema a ser desenvolvido durante o Estágio, sob a supervisão de Docente do PPGD/UFSC.</article>
+	  <article class="card"><div class="num">Linhas de Pesquisa</div><h3>1. Ordem Internacional, Justiça e Sustentabilidade</h3><p>Perceba a diferença entre titular, controlador e operador.</p></article>
+	  <article class="card"><div class="num">Aplique</div><h3>Decida</h3><p>Use os conceitos para analisar situações do cotidiano.</p></article>
+	</div>
+  </section>
+
+<section id="etapas">
+  <div class="eyebrow">03 · Etapas do programa</div>
+  <h2>Documentos exigidos em cada fase</h2>
+  <p class="lead">Clique em uma etapa para ver a lista de documentos. Os itens marcados com <span class="badge-obrig">obrigatório</span> são indispensáveis para avançar de fase.</p>
+  <div id="listaEtapas"><!-- gerado via JavaScript --></div>
+</section>
+
+<section id="envio">
+  <div class="eyebrow">04 · Enviar para a coordenação</div>
+  <h2>Registrar seus dados e status da documentação</h2>
+  <p class="lead">Preencha seus dados e escolha a etapa atual. O sistema envia automaticamente para a planilha da coordenação, junto com a lista de documentos que você já marcou como concluídos naquela etapa.</p>
+
+  <div class="form-box">
+    <form id="formEnvio" onsubmit="return enviarFormulario(event)">
+      <div class="grid2">
+        <div class="campo">
+          <label for="nome">Nome completo</label>
+          <input id="nome" name="nome" required type="text"/>
+        </div>
+        <div class="campo">
+          <label for="email">E-mail institucional</label>
+          <input id="email" name="email" required type="email"/>
+        </div>
+      </div>
+      <div class="grid2">
+        <div class="campo">
+          <label for="matricula">Matrícula / número de processo</label>
+          <input id="matricula" name="matricula" type="text"/>
+        </div>
+        <div class="campo">
+          <label for="etapaAtual">Etapa atual</label>
+          <select id="etapaAtual" name="etapaAtual"><!-- gerado via JavaScript --></select>
+        </div>
+      </div>
+      <div class="campo">
+        <label for="observacoes">Observações (opcional)</label>
+        <textarea id="observacoes" name="observacoes" placeholder="Alguma pendência ou dúvida sobre a documentação?"></textarea>
+      </div>
+
+      <div class="resumo-envio" id="resumoEnvio">
+        O resumo dos documentos marcados na etapa selecionada aparece aqui.
+      </div>
+
+      <button class="primario" type="submit">Enviar dados para a coordenação</button>
+      <div aria-live="polite" class="feedback" id="feedbackEnvio" role="status"></div>
+      <p class="aviso-privacidade">Seus dados são enviados diretamente a uma planilha da coordenação do programa. Nenhuma informação fica armazenada neste site além do seu progresso de checklist, salvo localmente no seu navegador.</p>
+    </form>
+  </div>
+</section>
+
+<section id="duvidas">
+  <div class="eyebrow">05 · Dúvidas frequentes</div>
+  <h2>Antes de enviar, confira</h2>
+  <ul class="lead">
+    <li>Documentos digitalizados devem estar legíveis e, quando exigido, autenticados.</li>
+    <li>Envie primeiro os documentos <strong>obrigatórios</strong> de cada etapa — os complementares podem ser enviados depois.</li>
+    <li>Em caso de dúvida sobre um documento específico, contate a coordenação pelo e-mail institucional do programa.</li>
+  </ul>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <strong>Documentação do Pós-Doutorado</strong>
+      <p class="small">Página mantida pela coordenação do programa. Em caso de divergência, prevalece o edital vigente.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================================
+     IFRAME OCULTO — necessário para enviar o formulário ao Google
+     Forms sem sair desta página nem exigir servidor próprio.
+     ============================================================ -->
+<iframe id="hidden_iframe" name="hidden_iframe" style="display:none" title="envio"></iframe>
+
+<script>
+function toggleRole(btn){
+  const card=btn.closest('.role');
+  const open=card.classList.toggle('open');
+  btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  const hint=btn.querySelector('.hint');
+  if(hint) hint.textContent=open ? 'Conteúdo aberto — clique para recolher' : 'Clique ou pressione Enter para explorar';
+}
+function toggleData(btn){
+  btn.classList.toggle('open');
+  btn.setAttribute('aria-expanded',btn.classList.contains('open')?'true':'false');
+}
+function answer(btn,correct,id){
+  const parent=btn.parentElement;
+  parent.querySelectorAll('.choice').forEach(b=>b.disabled=true);
+  btn.classList.add(correct?'correct':'wrong');
+  const box=document.getElementById(id);
+  box.className='feedback show '+(correct?'good':'bad');
+  const messages={
+    fb1: correct ? '<strong>✓ Adequado.</strong> O material orienta obter autorização por escrito ou utilizar imagens de bancos livres.' : '<strong>Reveja.</strong> O material orienta obter autorização por escrito ou utilizar imagens de bancos livres.',
+    fb2: correct ? '<strong>✓ Adequado.</strong> O material orienta não inserir dados reais em IA externas e recomenda anonimizar as informações.' : '<strong>Reveja.</strong> A orientação do material é não inserir dados reais em IA externas; anonimize as informações.',
+    fb3: correct ? '<strong>✓ Adequado.</strong> Informe o que está sendo coletado, por quê e como será utilizado.' : '<strong>Reveja.</strong> A orientação é informar o que está sendo coletado, por quê e como será usado.',
+    fb4: correct ? '<strong>✓ Adequado.</strong> O material orienta avisar no início e obter consentimento verbal ou por escrito antes da gravação.' : '<strong>Reveja.</strong> A orientação do material é avisar no início e obter consentimento antes de gravar.',
+    fb5: correct ? '<strong>✓ Adequado.</strong> O material orienta manter a planilha em pasta protegida por senha, com acesso restrito ao responsável.' : '<strong>Reveja.</strong> O material orienta proteção por senha e acesso restrito.'
+  };
+  box.innerHTML=messages[id];
+}
+function checkList(){
+  const boxes=[...document.querySelectorAll('#checklist input')];
+  const done=boxes.filter(b=>b.checked).length;
+  const out=document.getElementById('checkResult');
+  out.textContent=done===boxes.length
+    ? '🟢 Checklist completo. Você passou por todos os pontos desta etapa.'
+    : '🟡 Você marcou '+done+' de '+boxes.length+' itens. Revise os pontos que ficaram de fora.';
+}
+document.querySelectorAll('#checklist input').forEach(function(cb){
+  cb.addEventListener('change',function(){cb.parentElement.classList.toggle('checked',cb.checked);});
+});
+function saveReflection(){
+  const val=document.getElementById('reflection').value.trim();
+  const box=document.getElementById('reflectionMsg');
+  box.className='feedback show '+(val?'good':'bad');
+  box.innerHTML=val
+    ? '<strong>✓ Reflexão registrada nesta página.</strong> Em uma versão integrada ao AVA, este campo pode ser substituído ou conectado à atividade do Moodle.'
+    : '<strong>Escreva pelo menos um exemplo.</strong>';
+}
+if('IntersectionObserver' in window){
+  const links=[...document.querySelectorAll('[data-nav]')];
+  const sections=links.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        links.forEach(l=>{l.classList.remove('active');l.removeAttribute('aria-current');});
+        const active=document.querySelector('[data-nav][href="#'+entry.target.id+'"]');
+        if(active){active.classList.add('active');active.setAttribute('aria-current','location');}
+      }
+    });
+  },{rootMargin:'-35% 0px -55% 0px'});
+  sections.forEach(s=>obs.observe(s));
+}
+</script>
+<script>(function(){
+const TRAIL_KEY='fd-ufsc-trilha-aula1-lgpd';
+const STAGES=[{"id": "papeis", "mode": "all-buttons"}, {"id": "dados", "mode": "all-buttons"}, {"id": "pratica", "mode": "cases"}, {"id": "check", "mode": "all-checks"}, {"id": "desafio", "mode": "reflection"}];
+let state={};
+try{state=JSON.parse(localStorage.getItem(TRAIL_KEY)||'{}')||{}}catch(e){state={}}
+function save(){try{localStorage.setItem(TRAIL_KEY,JSON.stringify(state))}catch(e){}}
+function setDone(id){if(!state[id]){state[id]=true;save();render()}}
+function allButtons(sec){const btns=[...sec.querySelectorAll('button')].filter(b=>!b.closest('#trilha-conclusao')); if(!btns.length)return false; return btns.every(b=>b.dataset.trailClicked==='1')}
+function anyButton(sec){return [...sec.querySelectorAll('button')].some(b=>b.dataset.trailClicked==='1')}
+function allChecks(sec){const c=[...sec.querySelectorAll('input[type="checkbox"]')]; return c.length>0 && c.every(x=>x.checked)}
+function cases(sec){const blocks=[...sec.querySelectorAll('.case')].filter(x=>x.querySelector('button')); return blocks.length>0 && blocks.every(x=>x.querySelector('button[data-trail-choice="1"]'))}
+function interactive(sec){const cards=[...sec.querySelectorAll('.interactive-card')].filter(x=>x.querySelector('button')); const done=cards.slice(0,4).every(x=>x.querySelector('button[data-trail-clicked="1"]')); const flow=[...sec.querySelectorAll('#flowButtons button')]; const flowDone=flow.length>0 && flow.every(b=>b.dataset.trailClicked==='1'); return done&&flowDone}
+function scenario(sec){return !!sec.querySelector('#scenarioOptions button[data-trail-clicked="1"]') && (window.scenarioIndex===undefined || window.scenarioIndex>=2)}
+function reflection(sec){const ta=sec.querySelector('textarea'); if(!ta)return false; const btn=[...sec.querySelectorAll('button')].find(b=>/registrar reflexão|concluir reflexão/i.test(b.textContent)); return !!(ta.value.trim() && btn && btn.dataset.trailClicked==='1')}
+function evaluate(stage){
+ if(stage.id==='situacoes-check'){const sec=document.getElementById('situacoes'); return allChecks(sec)}
+ if(stage.id==='comunicacao-check'){const sec=document.getElementById('comunicacao'); return allChecks(sec)}
+ const sec=document.getElementById(stage.id); if(!sec)return false;
+ switch(stage.mode){case'all-buttons':return allButtons(sec);case'any-button':return anyButton(sec);case'all-checks':return allChecks(sec);case'cases':return cases(sec);case'interactive':return interactive(sec);case'scenario':return scenario(sec);case'reflection':return reflection(sec);default:return false}
+}
+function render(){
+ let done=0;
+ STAGES.forEach((st,i)=>{const ok=!!state[st.id]||evaluate(st); if(ok){state[st.id]=true;done++} const el=document.getElementById('trail-step-'+(i+1)); if(el){el.classList.toggle('done',ok);el.classList.toggle('locked',!ok);const dot=el.querySelector('.trail-dot');if(dot)dot.textContent=ok?'✓':String(i+1)}});
+ save(); const total=STAGES.length, pct=Math.round(done/total*100); document.getElementById('trailCount').textContent=done+' de '+total+' etapas concluídas';document.getElementById('trailPercent').textContent=pct+'%';document.getElementById('trailBar').style.width=pct+'%';document.querySelector('#trilha-conclusao .trail-progress').setAttribute('aria-valuenow',done);
+ const btn=document.getElementById('trailFinish'); const status=document.getElementById('trailStatus');const text=document.getElementById('trailStatusText'); if(done===total){btn.disabled=false;btn.classList.add('complete');status.textContent='🎉 Aula concluída!';text.textContent='Você explorou as interações essenciais e concluiu todas as etapas desta aula.'}else{btn.disabled=true;btn.classList.remove('complete');status.textContent='Continue explorando a aula.';text.textContent='Faltam '+(total-done)+' etapa(s). A trilha será atualizada automaticamente.'}
+}
+document.addEventListener('click',function(e){const b=e.target.closest('button');if(!b||b.closest('#trilha-conclusao'))return; b.dataset.trailClicked='1'; const sec=b.closest('section'); if(sec){
+  if(sec.id==='papeis'||sec.id==='dados'||sec.id==='principios'||sec.id==='licencas'||sec.id==='ia'||sec.id==='acessibilidade'||sec.id==='riscos'||sec.id==='comece'){}
+  if(sec.id==='pratica'||sec.id==='situacoes'){const c=b.closest('.case');if(c)c.querySelectorAll('button').forEach(x=>x.dataset.trailChoice='1')}
+  if(sec.id==='interacoes' && b.closest('.interactive-card')){b.closest('.interactive-card').querySelectorAll('button').forEach(x=>x.dataset.trailClicked='1')}
+ }
+ setTimeout(render,80);
+});
+document.addEventListener('change',function(e){if(e.target.matches('#trilha-conclusao input'))return;setTimeout(render,50)});
+document.addEventListener('input',function(e){if(e.target.matches('textarea'))setTimeout(render,50)});
+// Observe dynamic scenario buttons and scenario progression.
+const obs=new MutationObserver(()=>setTimeout(render,50));obs.observe(document.body,{childList:true,subtree:true});
+document.getElementById('trailFinish').addEventListener('click',function(){if(this.disabled)return; this.textContent='✓ Aula concluída'; this.setAttribute('aria-label','Aula concluída'); document.getElementById('trilha-conclusao').scrollIntoView({behavior:'smooth',block:'center'})});
+document.getElementById('trailReset').addEventListener('click',function(){if(confirm('Reiniciar o progresso desta aula?')){state={};save();location.reload()}});
+// Reflection submit buttons can be clicked before/after the existing save function runs.
+render();
+})();
+/* ==========================================================
+   1) CONFIGURAÇÃO DAS ETAPAS E DOCUMENTOS
+   Edite este array para refletir as etapas reais do seu
+   programa. Cada documento tem um "id" único (usado para
+   salvar o progresso) e "obrigatorio": true/false.
+   ========================================================== */
+const ETAPAS = [
+  {
+    id: 'solicitar',
+    titulo: 'Solicitação do Estágio',
+    subtitulo: 'Documentação necessária para a inscrição',
+    documentos: [
+      {id:'cand-curriculo', nome:'Currículo Lattes atualizado', desc:'Emitido nos últimos 90 dias.', obrigatorio:true},
+      {id:'cand-diploma', nome:'Diploma de doutorado', desc:'Ou ata de defesa, se o diploma ainda não foi emitido.', obrigatorio:true},
+      {id:'cand-projeto', nome:'Projeto de pesquisa', desc:'Conforme modelo do edital.', obrigatorio:true},
+      {id:'cand-carta', nome:'Carta de aceite do supervisor', desc:'Assinada pelo docente responsável.', obrigatorio:true},
+      {id:'cand-identidade', nome:'Documento de identidade', desc:'RG ou passaporte (candidatos estrangeiros).', obrigatorio:false}
+    ]
+  },
+  {
+    id: 'prorrogar',
+    titulo: 'Aprovação e matrícula',
+    subtitulo: 'Após o resultado da seleção',
+    documentos: [
+      {id:'mat-termo', nome:'Termo de compromisso', desc:'Assinado por candidato e supervisor.', obrigatorio:true},
+      {id:'mat-plano', nome:'Plano de trabalho detalhado', desc:'Cronograma de atividades do período.', obrigatorio:true},
+      {id:'mat-comprovante', nome:'Comprovante de vínculo anterior', desc:'Quando aplicável.', obrigatorio:false}
+    ]
+  },
+  {
+    id: 'concluir',
+    titulo: 'Acompanhamento periódico',
+    subtitulo: 'Durante o desenvolvimento do projeto',
+    documentos: [
+      {id:'acomp-relatorio', nome:'Relatório parcial de atividades', desc:'Conforme periodicidade definida em edital.', obrigatorio:true},
+      {id:'acomp-parecer', nome:'Parecer do supervisor', desc:'Sobre o andamento do projeto.', obrigatorio:true}
+    ]
+  }
+];
+
+/* ==========================================================
+   2) INTEGRAÇÃO COM GOOGLE FORMS
+   Substitua os valores abaixo pelos do SEU formulário:
+
+   a) Crie um Google Forms com os campos: Nome, E-mail,
+      Matrícula, Etapa atual, Observações, Documentos concluídos.
+   b) Abra o formulário publicado, clique nos três pontos >
+      "Obter link pré-preenchido", preencha cada campo com um
+      valor de teste e gere o link.
+   c) O link gerado mostra parâmetros como "entry.123456789=..."
+      — um número por campo. Copie cada número para as
+      constantes abaixo.
+   d) Troque FORM_ACTION_URL pela URL de ação do formulário:
+      pegue a URL do link pré-preenchido até "/formResponse"
+      (troque "viewform" por "formResponse" no final da URL).
+   ========================================================== */
+const FORM_ACTION_URL = 'https://docs.google.com/forms/d/e/SEU_ID_DE_FORMULARIO/formResponse';
+const ENTRY_NOME          = 'entry.000000001';
+const ENTRY_EMAIL         = 'entry.000000002';
+const ENTRY_MATRICULA     = 'entry.000000003';
+const ENTRY_ETAPA         = 'entry.000000004';
+const ENTRY_OBSERVACOES   = 'entry.000000005';
+const ENTRY_DOCUMENTOS    = 'entry.000000006';
+
+/* ==========================================================
+   3) PERSISTÊNCIA LOCAL DO CHECKLIST (por navegador)
+   ========================================================== */
+const CHAVE_PROGRESSO = 'posdoc-documentacao-progresso';
+let progresso = {};
+try{ progresso = JSON.parse(localStorage.getItem(CHAVE_PROGRESSO) || '{}') || {}; }catch(e){ progresso = {}; }
+function salvarProgresso(){ try{ localStorage.setItem(CHAVE_PROGRESSO, JSON.stringify(progresso)); }catch(e){} }
+
+/* ==========================================================
+   4) RENDERIZAÇÃO
+   ========================================================== */
+function contarEtapa(etapa){
+  const total = etapa.documentos.length;
+  const feitos = etapa.documentos.filter(d => progresso[d.id]).length;
+  const obrigTotal = etapa.documentos.filter(d => d.obrigatorio).length;
+  const obrigFeitos = etapa.documentos.filter(d => d.obrigatorio && progresso[d.id]).length;
+  return {total, feitos, completo: obrigFeitos === obrigTotal};
+}
+
+function renderStepper(){
+  const el = document.getElementById('stepper');
+  el.innerHTML = ETAPAS.map((etapa, i) => {
+    const c = contarEtapa(etapa);
+    return '<div class="step ' + (c.completo ? 'completo' : '') + '">' +
+      '<div class="dot">' + (c.completo ? '✓' : (i+1)) + '</div>' +
+      '<div><strong>' + etapa.titulo + '</strong><small>' + c.feitos + ' de ' + c.total + ' documentos</small></div>' +
+      '</div>';
+  }).join('');
+}
+
+function renderEtapas(){
+  const el = document.getElementById('listaEtapas');
+  el.innerHTML = ETAPAS.map(etapa => {
+    const c = contarEtapa(etapa);
+    const docsHtml = etapa.documentos.map(doc => {
+      const marcado = !!progresso[doc.id];
+      return '<label class="' + (marcado ? 'marcado' : '') + '">' +
+        '<input type="checkbox" data-doc="' + doc.id + '" ' + (marcado ? 'checked' : '') + ' onchange="alternarDocumento(this)"/>' +
+        '<span><span class="doc-nome">' + doc.nome + (doc.obrigatorio ? '<span class="badge-obrig">obrigatório</span>' : '') + '</span>' +
+        '<span class="doc-desc">' + doc.desc + '</span></span>' +
+        '</label>';
+    }).join('');
+    return '<div class="etapa" id="etapa-' + etapa.id + '">' +
+      '<button class="etapa-toggle" onclick="alternarEtapa(\'' + etapa.id + '\')" type="button">' +
+        '<span><span class="etapa-titulo">' + etapa.titulo + '</span><span class="etapa-sub">' + etapa.subtitulo + '</span></span>' +
+        '<span class="etapa-badge ' + (c.completo ? 'completo' : '') + '">' + (c.completo ? 'Completo' : c.feitos + '/' + c.total) + '</span>' +
+      '</button>' +
+      '<div class="etapa-corpo"><div class="doc-lista">' + docsHtml + '</div></div>' +
+    '</div>';
+  }).join('');
+}
+
+function renderSelectEtapas(){
+  const sel = document.getElementById('etapaAtual');
+  sel.innerHTML = ETAPAS.map(e => '<option value="' + e.id + '">' + e.titulo + '</option>').join('');
+  sel.addEventListener('change', atualizarResumoEnvio);
+}
+
+function alternarEtapa(id){
+  document.getElementById('etapa-' + id).classList.toggle('open');
+}
+
+function alternarDocumento(input){
+  const id = input.dataset.doc;
+  progresso[id] = input.checked;
+  salvarProgresso();
+  renderStepper();
+  renderEtapas();
+  // Reabre a etapa que acabou de ser editada, já que renderEtapas recria o DOM.
+  const etapaPai = ETAPAS.find(e => e.documentos.some(d => d.id === id));
+  if(etapaPai) document.getElementById('etapa-' + etapaPai.id).classList.add('open');
+  atualizarResumoEnvio();
+}
+
+function atualizarResumoEnvio(){
+  const etapaId = document.getElementById('etapaAtual').value;
+  const etapa = ETAPAS.find(e => e.id === etapaId);
+  if(!etapa) return;
+  const feitos = etapa.documentos.filter(d => progresso[d.id]);
+  const faltando = etapa.documentos.filter(d => !progresso[d.id]);
+  const resumo = document.getElementById('resumoEnvio');
+  resumo.innerHTML = '<strong>' + etapa.titulo + ':</strong> ' + feitos.length + ' de ' + etapa.documentos.length + ' documentos marcados.' +
+    (faltando.length ? ' Faltam: ' + faltando.map(d => d.nome).join(', ') + '.' : ' Todos os documentos desta etapa estão marcados.');
+}
+
+/* ==========================================================
+   5) ENVIO PARA O GOOGLE FORMS
+   Monta os campos ocultos e envia via iframe oculto, evitando
+   sair desta página (não é possível ler a resposta do Google
+   por causa de CORS, então tratamos o envio como bem-sucedido
+   assim que a submissão é disparada).
+   ========================================================== */
+function enviarFormulario(evento){
+  evento.preventDefault();
+
+  const nome = document.getElementById('nome').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const matricula = document.getElementById('matricula').value.trim();
+  const etapaId = document.getElementById('etapaAtual').value;
+  const observacoes = document.getElementById('observacoes').value.trim();
+  const etapa = ETAPAS.find(e => e.id === etapaId);
+
+  const feedback = document.getElementById('feedbackEnvio');
+
+  if(!nome || !email){
+    feedback.className = 'feedback show bad';
+    feedback.textContent = 'Preencha ao menos nome e e-mail antes de enviar.';
+    return false;
+  }
+
+  const listaDocumentos = etapa.documentos
+    .map(d => d.nome + ': ' + (progresso[d.id] ? 'concluído' : 'pendente'))
+    .join(' | ');
+
+  // Monta um formulário temporário e submete pelo iframe oculto.
+  const formTemp = document.createElement('form');
+  formTemp.action = FORM_ACTION_URL;
+  formTemp.method = 'POST';
+  formTemp.target = 'hidden_iframe';
+
+  const campos = {
+    [ENTRY_NOME]: nome,
+    [ENTRY_EMAIL]: email,
+    [ENTRY_MATRICULA]: matricula,
+    [ENTRY_ETAPA]: etapa.titulo,
+    [ENTRY_OBSERVACOES]: observacoes,
+    [ENTRY_DOCUMENTOS]: listaDocumentos
+  };
+
+  Object.keys(campos).forEach(function(nomeCampo){
+    const input = document.createElement('input');
+    input.type = 'hidden';
+    input.name = nomeCampo;
+    input.value = campos[nomeCampo];
+    formTemp.appendChild(input);
+  });
+
+  document.body.appendChild(formTemp);
+  formTemp.submit();
+  document.body.removeChild(formTemp);
+
+  feedback.className = 'feedback show good';
+  feedback.innerHTML = '<strong>✓ Dados enviados.</strong> A coordenação receberá seu nome, e-mail, etapa atual e o status dos documentos marcados.';
+
+  return false;
+}
+
+/* ==========================================================
+   6) NAVEGAÇÃO ATIVA NO MENU
+   ========================================================== */
+if('IntersectionObserver' in window){
+  const links = [...document.querySelectorAll('[data-nav]')];
+  const secoes = links.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        links.forEach(l => l.classList.remove('active'));
+        const ativo = document.querySelector('[data-nav][href="#' + entry.target.id + '"]');
+        if(ativo) ativo.classList.add('active');
+      }
+    });
+  }, {rootMargin:'-35% 0px -55% 0px'});
+  secoes.forEach(s => obs.observe(s));
+}
+
+/* ==========================================================
+   INICIALIZAÇÃO
+   ========================================================== */
+renderStepper();
+renderEtapas();
+renderSelectEtapas();
+atualizarResumoEnvio();
+</script>
+</body>
+</html>
